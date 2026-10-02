@@ -18,7 +18,7 @@
     words.forEach(function (w) { w.dataset.panelTarget === key ? w.setAttribute('aria-current', 'true') : w.removeAttribute('aria-current'); });
     index.classList.toggle('has-active', key !== 'default');
     var name = key === 'default' ? '' : (panels[key].dataset.title || '');
-    document.title = name ? name + ' — DEADWORK' : baseTitle;
+    document.title = name ? 'DEADWORK — ' + name : baseTitle;
     if (o.announce) status.textContent = name ? name + ', shown' : '';
     if (o.push) history.pushState(null, '', key === 'default' ? location.pathname + location.search : '#' + key);
     if (o.reveal && !fixed.matches && root.getBoundingClientRect().top > innerHeight * 0.6)
