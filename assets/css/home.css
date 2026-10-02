@@ -83,6 +83,10 @@
 .foot-email { text-transform: none; letter-spacing: .06em; color: var(--bone-2); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 .foot-note { text-transform: none; letter-spacing: .02em; color: var(--bone-2); text-align: center; }
 
+.panel-follow { display: block; margin-top: 16px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--bone-2); }
+.panel-follow a { color: var(--bone); text-decoration: underline; text-underline-offset: 3px; }
+.panel-follow a:hover { color: var(--signal); }
+
 @media (min-width: 720px) { .poster-index { grid-template-columns: repeat(4, 1fr); } }
 
 @media (min-width: 720px) and (min-height: 640px) {
