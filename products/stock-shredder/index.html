@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-product="stock-shredder">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stock Shredder — DEADWORK</title>
+<meta name="description" content="Automates the selection, trimming, organization, export and keywords of stock footage for marketplaces. Allowing freedom of time to pursue other things without avoiding income." />
+<link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="../../assets/img/brand/apple-touch-icon.png" />
+<link rel="stylesheet" href="../../assets/css/tokens.css" />
+<link rel="stylesheet" href="../../assets/css/base.css" />
+<link rel="stylesheet" href="../../assets/css/product.css" />
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+<header class="site-header" data-header>
+  <div class="wrap header-inner">
+    <a href="../../index.html" class="header-logo" aria-label="DEADWORK home"><img src="../../assets/img/brand/deadwork-wordmark-bone.png" alt="DEADWORK" width="1120" height="226" /></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="../../index.html" aria-current="true">Products</a>
+      <a href="../../about/index.html">Mission</a>
+      <a href="mailto:deadwork@deadworkstudio.com">Contact</a>
+    </nav>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-overlay" id="mobile-nav" aria-label="Menu" data-nav-overlay>
+    <a href="../../index.html" aria-current="true">Products</a>
+    <a href="../../about/index.html">Mission</a>
+    <a href="mailto:deadwork@deadworkstudio.com">Contact</a>
+  </nav>
+</header>
+
+<div class="wrap">
+  <p class="breadcrumb"><a href="../../index.html">Tools</a><span class="sep">/</span><span>POST / REVENUE</span><span class="sep">/</span><span class="current">STOCK SHREDDER</span></p>
+</div>
+
+<section class="wrap product-hero" data-product="stock-shredder">
+  <div class="product-hero-badge-row">
+    <span class="badge badge-beta"><span class="badge-icon badge-icon--filled"></span>BETA</span>
+  </div>
+  <h1 class="display">Stock Shredder</h1>
+  <p class="lede">Automates the selection, trimming, organization, export and keywords of stock footage for marketplaces. Allowing freedom of time to pursue other things without avoiding income.</p>
+  <div class="product-hero-actions">
+    <a href="https://github.com/stockshredder/stock-shredder-releases/releases/download/v0.4.4/Stock-Shredder-0.4.4-universal.dmg" class="btn btn-primary">Download free<span class="sr-only"> — 25 clips, no card required</span></a>
+    <a class="btn-tertiary" href="#pricing"><span class="label">See plans</span><span class="arrow" aria-hidden="true">&rarr;</span></a>
+  </div>
+</section>
+
+<section class="wrap pricing" id="pricing">
+  <h2>Plans</h2>
+  <p class="pricing-status pricing-status-bad" data-pricing-error hidden></p>
+
+  <div class="pricing-grid" data-pricing-grid>
+    <div class="pricing-card">
+      <div class="pricing-card-head">
+        <span class="pricing-name">Starter</span>
+      </div>
+      <p class="pricing-price"><span class="num">$25</span>/mo</p>
+      <p class="pricing-clips">100 clips / mo</p>
+      <button type="button" class="btn btn-secondary" data-plan-button="starter">Subscribe</button>
+    </div>
+    <div class="pricing-card pricing-card-recommended">
+      <div class="pricing-card-head">
+        <span class="pricing-name">Creator</span>
+        <span class="badge badge-dev">Recommended</span>
+      </div>
+      <p class="pricing-price"><span class="num">$59</span>/mo</p>
+      <p class="pricing-clips">400 clips / mo</p>
+      <button type="button" class="btn btn-secondary" data-plan-button="creator">Subscribe</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-card-head">
+        <span class="pricing-name">Pro</span>
+      </div>
+      <p class="pricing-price"><span class="num">$109</span>/mo</p>
+      <p class="pricing-clips">1,000 clips / mo</p>
+      <button type="button" class="btn btn-secondary" data-plan-button="pro">Subscribe</button>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-card-head">
+        <span class="pricing-name">Studio</span>
+      </div>
+      <p class="pricing-price"><span class="num">$199</span>/mo</p>
+      <p class="pricing-clips">2,000 clips / mo</p>
+      <button type="button" class="btn btn-secondary" data-plan-button="studio">Subscribe</button>
+    </div>
+  </div>
+
+  <div class="checkout-panel" data-checkout-panel hidden>
+    <div class="checkout-panel-head">
+      <span class="checkout-panel-eyebrow">Subscribing to</span>
+      <span class="checkout-panel-plan" data-checkout-plan-label></span>
+    </div>
+    <p class="checkout-status" data-checkout-status hidden></p>
+    <div class="checkout-panel-frame" id="checkout-frame"></div>
+    <div class="checkout-panel-actions">
+      <button type="button" class="btn btn-secondary" data-checkout-retry hidden>Try again</button>
+      <button type="button" class="btn btn-secondary" data-checkout-cancel>Cancel</button>
+    </div>
+  </div>
+
+  <div class="checkout-success" data-checkout-success hidden>
+    <span class="checkout-panel-eyebrow">You're in</span>
+    <h3>Your activation key</h3>
+    <div class="activation-key-box">
+      <code data-activation-key></code>
+      <button type="button" class="btn btn-secondary" data-copy-key>Copy</button>
+    </div>
+    <a href="https://github.com/stockshredder/stock-shredder-releases/releases/download/v0.4.4/Stock-Shredder-0.4.4-universal.dmg" class="btn btn-primary">Download Stock Shredder</a>
+    <p class="checkout-success-note">Paste this activation key when it asks — full instructions are in the app.</p>
+  </div>
+</section>
+
+<section class="wrap interface-shot">
+  <figure>
+    <img src="../../assets/img/products/stock-shredder/interface-temp.png" alt="Stock Shredder's Import screen, showing the drop zone for raw footage and the Select / Shred / Send / Share step rail." width="1600" height="893" loading="lazy" />
+    <figcaption>Real app screenshot — temporary, will be replaced with a final marketing capture</figcaption>
+  </figure>
+</section>
+
+<section class="wrap split">
+  <div>
+    <h2>The problem</h2>
+    <!-- PLACEHOLDER — draft copy grounded in the one-liner; owner to review -->
+    <p data-owner-review="problem blurb">Terabytes of footage from finished jobs never make it to a stock marketplace, because sorting, trimming, and tagging it by hand costs more time than it's worth.</p>
+  </div>
+  <div>
+    <h2>What it does</h2>
+    <!-- PLACEHOLDER — draft copy expanded from the one-liner; owner to review -->
+    <p data-owner-review="what it does blurb">Stock Shredder reviews raw footage, selects and trims the usable shots, exports them, and writes the keywords — ready for Artgrid, Shutterstock, Adobe Stock, Pond5, and Storyblocks.</p>
+  </div>
+</section>
+
+<section class="wrap spec">
+  <h2>Spec sheet</h2>
+  <table class="spec-table">
+    <tbody>
+        <tr><th>Platform</th><td>macOS — Intel &amp; Apple Silicon. Windows in development.</td></tr>
+        <tr><th>Status</th><td>Beta</td></tr>
+        <tr><th>Works with</th><td>Artgrid, Shutterstock, Adobe Stock, Pond5, Storyblocks</td></tr>
+        <tr><th>Formats</th><td>MP4, MOV, MXF, MKV, AVI, M4V, MTS, M2TS, MPG, MPEG, WebM, 3GP, WMV, plus Blackmagic RAW, RED R3D, CinemaDNG, and ARRIRAW with the relevant vendor tools installed</td></tr>
+        <tr><th>Price</th><td>From $25/mo (100 clips) to $199/mo (2,000 clips). 25 free clips to start, no card required.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="wrap cross-sell">
+  <a href="../../products/sound-driver/index.html" class="cross-sell-card" data-product="sound-driver">
+    <div>
+      <div class="cross-sell-eyebrow">Also in Post / Revenue</div>
+      <div class="cross-sell-name">Sound Driver</div>
+    </div>
+    <span class="btn-tertiary"><span class="label">View</span><span class="arrow">&rarr;</span></span>
+  </a>
+</section>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <nav aria-label="Tools">
+        <div class="footer-links footer-links--tools">
+          <a href="../../products/scene-lock/index.html">Scene Lock</a>
+          <a href="../../products/set-control/index.html">Set Control</a>
+          <a href="../../products/loadout/index.html">Loadout</a>
+          <a href="../../products/offload/index.html">Offload</a>
+          <a href="../../products/sound-driver/index.html">Sound Driver</a>
+          <a href="../../products/stock-shredder/index.html">Stock Shredder</a>
+        </div>
+      </nav>
+      <nav aria-label="Company">
+        <div class="footer-links">
+          <a href="../../about/index.html">Mission</a>
+          <a href="mailto:deadwork@deadworkstudio.com">Contact</a>
+          <a href="https://www.instagram.com/deadworkstudio/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.youtube.com/@deadworkstudio" target="_blank" rel="noopener">YouTube<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.tiktok.com/@deadworkstudio" target="_blank" rel="noopener">TikTok<span class="sr-only"> (opens in a new tab)</span></a>
+        </div>
+      </nav>
+      <p class="footer-meta">Los Angeles, CA</p>
+    </div>
+    <img class="footer-wordmark" src="../../assets/img/brand/deadwork-wordmark-bone.png" alt="" aria-hidden="true" width="1120" height="226" />
+    <div class="footer-bottom">&copy; 2026 DEADWORK&reg; &middot; Made by filmmakers for filmmakers.</div>
+  </div>
+</footer>
+<script src="../../assets/js/main.js"></script>
+<script src="../../assets/js/checkout.js"></script>
+</body>
+</html>

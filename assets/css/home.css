@@ -1,0 +1,107 @@
+/* DEADWORK — home page only. Loaded after base.css, on index.html alone.
+   Fixed, no-scroll "poster" layout at desktop/tablet sizes (>=720w and >=640h); a normal
+   stacked, scrolling page below that. See assets/js/home.js for the panel-swap behavior. */
+
+.poster {
+  --col-gap: clamp(16px, 2.2vw, 32px);
+  max-width: var(--wrap-max);
+  margin: 0 auto;
+  padding: 24px var(--gutter) 0;
+  position: relative;
+}
+
+/* Background footage — real BTS video, dimmed heavily behind everything so text stays readable.
+   Fixed behind the viewport in poster mode; an ordinary backdrop in scroll mode. */
+.poster-media {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.poster-head, .poster-index, .poster-panel, .poster-foot { position: relative; z-index: 1; }
+.poster-media video,
+.poster-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+.poster-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10,10,9,.5) 0%, rgba(10,10,9,.2) 34%, rgba(10,10,9,0) 55%),
+    linear-gradient(180deg, rgba(10,10,9,.65) 0%, rgba(10,10,9,.52) 40%, rgba(10,10,9,.7) 100%),
+    var(--grain);
+  background-size: auto, auto, 180px 180px;
+  opacity: 1;
+}
+.poster-media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: var(--grain);
+  background-size: 180px 180px;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+@media (prefers-reduced-motion: reduce) {
+  .poster-media video { display: none; }
+}
+/* .poster's own children (head/index/panel/foot) already sit in normal flow above this
+   fixed, negative-z-index backdrop — no per-child z-index needed. */
+
+.poster-brand img { height: 18px; width: auto; }
+.poster-lede { margin-top: 16px; font-size: 16px; line-height: 1.55; color: var(--bone-2); max-width: 40ch; }
+.poster-strip { display: none; }
+
+.poster-index { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px var(--col-gap); }
+.index-label { margin-bottom: 4px; font: 400 11px/1.4 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone-3); }
+.index-word { display: inline-flex; align-items: center; min-height: 44px; font-size: 18px; line-height: 1.3; color: var(--bone); text-decoration: underline 2px transparent; text-underline-offset: 6px; transition: color .15s var(--ease), text-decoration-color .15s var(--ease); }
+@media (hover: hover) { .index-word:hover { text-decoration-color: var(--acc); text-decoration-thickness: 1px; } }
+.index-word[aria-current] { text-decoration-color: var(--acc); text-decoration-thickness: 2px; }
+.poster-index.has-active .index-word:not([aria-current]) { color: var(--bone-2); }
+
+.poster-panel { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); container-type: inline-size; min-width: 0; }
+.panel-stack { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.panel { grid-area: 1 / 1; visibility: hidden; min-width: 0; }
+.panel.is-active { visibility: visible; animation: panel-in .14s var(--ease); }
+@keyframes panel-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .panel.is-active { animation: none; } }
+.panel[data-product]::before { content: ''; display: block; width: 48px; height: 2px; background: var(--acc); margin-bottom: 20px; }
+.panel-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: clamp(16px, 3svh, 32px); }
+.panel-name { font-size: min(15.5cqi, 16svh); margin-bottom: clamp(16px, 3svh, 32px); }
+.panel-headline { font-size: min(12cqi, 14svh); max-width: 14ch; }
+.panel-oneliner { font-size: clamp(16px, 1.25vw, 19px); line-height: 1.6; color: rgba(230,224,211,.8); max-width: 52ch; margin-bottom: clamp(24px, 4svh, 40px); }
+.panel-email { font-family: var(--font-display); font-size: clamp(22px, 5.2cqi, 48px); line-height: 1.1; text-decoration: none; overflow-wrap: anywhere; display: inline-block; max-width: 100%; margin-bottom: 8px; }
+
+.poster-foot { margin-top: 64px; padding: 24px 0 32px; border-top: 1px solid var(--line); display: grid; gap: 4px; font: 12px/1.5 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone-3); }
+.foot-email { text-transform: none; letter-spacing: .06em; color: var(--bone-2); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+
+@media (min-width: 720px) { .poster-index { grid-template-columns: repeat(4, 1fr); } }
+
+@media (min-width: 720px) and (min-height: 640px) {
+  html, body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+  .poster { height: 100vh; height: 100svh; padding: 0 var(--gutter); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: auto minmax(0, 1fr) auto; column-gap: var(--col-gap); }
+  .poster-head, .poster-foot { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-items: start; }
+  .poster-head { padding-top: clamp(24px, 4svh, 40px); }
+  .poster-brand { grid-column: 1 / 5; }
+  .poster-lede  { grid-column: 5 / 10; margin: 0; font-size: 15px; max-width: 44ch; }
+  .poster-strip { display: block; grid-column: 10 / 13; text-align: right; font: 11px/1.6 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone-3); }
+  .poster-index { grid-column: 1 / 5; grid-row: 2; margin: 0; padding-block: clamp(24px, 5svh, 64px) clamp(24px, 4svh, 40px); display: flex; flex-direction: column; gap: clamp(16px, 3svh, 28px); }
+  .index-group--studio { margin-top: auto; }
+  .index-word { min-height: 32px; font-size: clamp(18px, 1.5vw, 22px); }
+  .poster-panel { grid-column: 5 / 13; grid-row: 2; margin: 0; border: 0; padding-block: clamp(24px, 5svh, 64px) clamp(24px, 4svh, 40px); min-height: 0; overflow-y: auto; scrollbar-width: thin; }
+  .poster-foot { grid-row: 3; margin: 0; padding: 20px 0 24px; }
+  .foot-email { grid-column: 1 / 5; min-height: 0; }
+  .foot-loc   { grid-column: 5 / 9; }
+  .foot-copy  { grid-column: 9 / 13; text-align: right; }
+}
+@media (min-width: 720px) and (max-width: 1023px) and (min-height: 640px) {
+  .poster-lede { grid-column: 5 / 13; }
+  .poster-strip { display: none; }
+}

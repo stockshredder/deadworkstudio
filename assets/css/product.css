@@ -1,0 +1,407 @@
+/* DEADWORK — product page template.
+   Shared shell for all 6 product pages (hero, split, spec sheet, cross-sell) plus the 404 page.
+   about/index.html no longer uses this file — it's built on the poster layout in home.css. */
+
+.breadcrumb {
+  padding: 28px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+.breadcrumb a { text-decoration: none; color: var(--bone-3); }
+.breadcrumb a:hover { color: var(--bone); }
+.breadcrumb .sep { margin: 0 8px; }
+.breadcrumb .current { color: var(--bone); }
+
+/* ---------- Product hero ---------- */
+.product-hero {
+  /* padding-block only: this sits on the same element as .wrap — a padding shorthand here
+     would wipe .wrap's 24px side gutters (flush-to-edge text on phones). Same for the
+     sections below that are written as class="wrap <section>". */
+  padding-block: clamp(56px, 7vw, 112px) var(--space-block);
+  border-top: 3px solid var(--acc);
+}
+.product-hero-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.product-hero h1 {
+  font-size: clamp(56px, 12.5vw, 184px);
+  line-height: 0.88;
+  margin-bottom: clamp(28px, 3vw, 40px);
+}
+.product-hero .lede { max-width: 44ch; margin-bottom: 40px; }
+.product-hero-actions { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+/* .notify-form is itself a flex container, nested inside this flex row — without an explicit
+   basis it shrink-wraps to its children's min-content instead of using the row's real available
+   width, which makes the input+button wrap onto separate lines even with plenty of room. */
+.product-hero-actions .notify-form { flex: 1 1 420px; max-width: 480px; }
+
+/* ---------- Artist avatars (Sound Driver only, for now) ---------- */
+.artist-avatars {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.artist-avatars img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  background: var(--ink-raised);
+}
+.artist-avatars img + img { margin-left: -14px; }
+.artist-avatars .eyebrow { margin-left: 8px; }
+
+/* ---------- Pricing (Stock Shredder only, for now) ---------- */
+.pricing {
+  padding-block: var(--space-block);
+  border-top: 1px solid var(--line);
+}
+.pricing h2 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  margin-bottom: 40px;
+}
+.pricing-status {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  margin-bottom: 24px;
+}
+.pricing-status-bad { color: var(--signal); border-color: var(--signal); }
+
+.pricing-grid {
+  /* :not([hidden]) — a bare `display: grid` here would out-specificity the UA [hidden] rule
+     (author styles beat UA styles at equal specificity), so the grid would stay visible even
+     while JS sets the hidden attribute to swap in the checkout panel. */
+  display: none;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.pricing-grid:not([hidden]) { display: grid; }
+@media (min-width: 640px) {
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 980px) {
+  .pricing-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 28px 24px 24px;
+  background: var(--ink);
+}
+.pricing-card-recommended {
+  background: var(--ink-raised);
+}
+.pricing-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.pricing-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone-2);
+}
+.pricing-card-recommended .pricing-name { color: var(--acc-text); }
+.pricing-price {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.2vw, 44px);
+  line-height: 1;
+  color: var(--bone);
+}
+.pricing-price .num { font-variant-numeric: tabular-nums; }
+.pricing-clips {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--bone-3);
+  margin-bottom: 6px;
+}
+.pricing-card .btn { margin-top: auto; width: 100%; }
+
+/* ---------- Embedded checkout panel (replaces the plan grid in place, no navigation) ---------- */
+.checkout-panel {
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: 32px clamp(20px, 3vw, 32px);
+}
+.checkout-panel-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.checkout-panel-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+.checkout-panel-plan {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  text-transform: uppercase;
+  color: var(--bone);
+}
+.checkout-status {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  padding: 14px 16px;
+  border: 1px solid var(--line-strong);
+  margin-bottom: 20px;
+}
+.checkout-status-bad { color: var(--signal); border-color: var(--signal); }
+.checkout-panel-frame { min-height: 480px; }
+.checkout-panel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* ---------- Checkout success ---------- */
+.checkout-success {
+  /* display kept out of the base rule and gated on :not([hidden]) for the same reason as
+     .pricing-grid above — see that comment. */
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  padding: clamp(32px, 4vw, 48px);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+.checkout-success:not([hidden]) { display: flex; }
+.checkout-success h3 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+.activation-key-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  background: var(--ink-raised);
+}
+.activation-key-box code {
+  font-family: var(--font-mono);
+  font-size: clamp(18px, 2.4vw, 24px);
+  letter-spacing: 0.08em;
+  color: var(--bone);
+}
+.checkout-success-note {
+  color: var(--bone-2);
+  font-size: 15px;
+  max-width: 44ch;
+}
+@media (max-width: 639px) {
+  .pricing-status,
+  .checkout-status { font-size: 14px; }
+}
+
+/* ---------- Interface screenshot (temporary — real app captures, swap for final marketing shots later) ---------- */
+.interface-shot { margin: 0 0 var(--space-block); }
+.interface-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+}
+.interface-shot figcaption {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+
+/* ---------- Client logo strip ("worked with" credits — quiet, editorial, not a hero element) ---------- */
+.client-logos {
+  padding-block: var(--space-block);
+  border-top: 1px solid var(--line);
+}
+.client-logos .eyebrow { margin-bottom: clamp(32px, 4vw, 48px); }
+.client-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  align-items: center;
+  justify-items: center;
+  column-gap: clamp(28px, 4vw, 56px);
+  row-gap: clamp(28px, 3.5vw, 44px);
+}
+.client-logo-grid img {
+  display: block;
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.65;
+  transition: opacity 0.18s var(--ease);
+}
+.client-logo-grid img:hover { opacity: 1; }
+.client-logo-text {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone);
+  opacity: 0.65;
+  transition: opacity 0.18s var(--ease);
+  white-space: nowrap;
+}
+.client-logo-text:hover { opacity: 1; }
+@media (max-width: 639px) {
+  .client-logo-grid {
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  }
+  .client-logo-grid img { height: 26px; }
+}
+
+/* ---------- Problem / What it does ---------- */
+.split {
+  padding-block: var(--space-block);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+@media (min-width: 760px) {
+  .split { grid-template-columns: 1fr 1fr; gap: clamp(56px, 7vw, 112px); }
+}
+.split h2 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--acc-text); /* text: never raw --acc (blood red fails contrast at 12px) */
+  margin-bottom: 24px;
+}
+.split p { color: rgba(230, 224, 211, 0.8); font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; max-width: 44ch; }
+.split p + p { margin-top: 14px; }
+
+/* ---------- Spec sheet ---------- */
+.spec { padding-block: var(--space-block); border-top: 1px solid var(--line); }
+.spec h2 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  margin-bottom: 40px;
+}
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table tr { border-top: 1px solid var(--line); }
+.spec-table tr:last-child { border-bottom: 1px solid var(--line); }
+.spec-table th,
+.spec-table td {
+  text-align: left;
+  padding: 20px 0;
+  font-size: 15px;
+  vertical-align: top;
+}
+.spec-table th {
+  width: 34%;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  font-weight: 500;
+}
+.spec-table td { color: var(--bone); }
+.spec-tbd { color: var(--bone-3); font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.04em; }
+
+/* ---------- Cross-sell strip ---------- */
+.cross-sell {
+  padding-block: var(--space-block) var(--space-section);
+  border-top: 1px solid var(--line);
+}
+.cross-sell-card {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  color: var(--bone);
+  transition: border-color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.cross-sell-card:hover { background: none; }
+.cross-sell-card:hover .cross-sell-name { color: var(--acc-text); }
+.cross-sell-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  margin-bottom: 12px;
+}
+.cross-sell-name {
+  font-size: clamp(40px, 7vw, 104px);
+  line-height: 0.9;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  transition: color 0.18s var(--ease);
+}
+
+/* ---------- 404 ---------- */
+.not-found {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+  padding: 96px 24px;
+}
+.not-found p.display { font-size: clamp(60px, 16vw, 160px); color: var(--bone-3); }
+
+@media (max-width: 639px) {
+  /* Body copy must never read smaller than 16px on mobile. These MUST live here, not in base.css:
+     product.css loads after base.css and declares these selectors at 15px with equal specificity,
+     so a mobile override in base.css silently loses. Spec-table <th> is a mono label, not body copy,
+     and 16px tracked caps would wrap in its 34% column, so only the data cells are bumped. */
+  .spec-table td {
+    font-size: 16px;
+  }
+
+  /* 44px tap target for the breadcrumb's "Tools" link without changing its visual size. */
+  .breadcrumb a {
+    display: inline-block;
+    padding: 14px 0;
+    margin: -14px 0;
+  }
+}

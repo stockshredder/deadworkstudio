@@ -1,0 +1,633 @@
+/* DEADWORK — base layer: reset, type scale, header/nav, buttons, badges, grid, footer.
+   Mobile-first. Loaded on every page after tokens.css. product.css adds the product-page
+   template on top of this. */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--bone);
+}
+
+body {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Film-stock grain, laid over the whole page at very low opacity — texture, not noise.
+   pointer-events:none + fixed so it never intercepts clicks or scrolls with the page. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: 180px 180px;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+img { max-width: 100%; height: auto; display: block; } /* height:auto — <img>s carry width/height attrs for layout-shift reservation */
+a { color: inherit; }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+ul { padding: 0; list-style: none; }
+button { font: inherit; }
+
+::selection { background: var(--bone); color: var(--ink); }
+:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+
+/* Visually hidden but read by screen readers (section headings, "opens in a new tab" notes). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.wrap {
+  max-width: var(--wrap-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.wrap-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.hairline { border-top: 1px solid var(--line); }
+
+/* ---------- Type ---------- */
+.eyebrow,
+.mono,
+.kicker {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: var(--bone-2);
+}
+.display {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 0.9;
+  font-weight: 400;
+  text-wrap: balance;
+}
+.lede {
+  font-size: clamp(18px, 1.4vw, 20px);
+  line-height: 1.7;
+  color: rgba(230, 224, 211, 0.8);
+}
+
+/* ---------- Buttons: one primary per screen; secondary outline; tertiary mono link ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 16px 32px;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease), transform 0.08s;
+  border: 1px solid transparent;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background: var(--bone);
+  color: var(--ink);
+  border-color: var(--bone);
+}
+.btn-primary:hover { background: #fff; border-color: #fff; }
+
+.btn-secondary {
+  min-height: 44px;
+  padding: 0 0 4px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--bone);
+}
+.btn-secondary:hover { border-bottom-color: var(--bone); background: none; }
+
+.btn-tertiary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.btn-tertiary .arrow { transition: transform 0.18s var(--ease); display: inline-block; }
+.btn-tertiary span.label {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition: background-size 0.22s var(--ease);
+  padding-bottom: 2px;
+}
+.btn-tertiary:hover span.label { background-size: 100% 1px; }
+.btn-tertiary:hover .arrow { transform: translateX(4px); }
+
+/* ---------- Status badges: shape-coded, not just color-coded ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge-beta {
+  background: var(--bone);
+  color: var(--ink);
+}
+.badge-dev {
+  background: transparent;
+  color: var(--bone);
+  border: 1px solid var(--line-strong);
+}
+.badge-icon {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border: 1px solid currentColor;
+}
+.badge-icon--filled {
+  background: currentColor;
+  border: none;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.site-header.is-scrolled {
+  background: rgba(10, 10, 9, 0.94);
+  border-bottom-color: transparent;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+  gap: 20px;
+}
+.header-logo { display: flex; align-items: center; min-height: 44px; }
+.header-logo img { height: 20px; width: auto; transition: opacity 0.2s var(--ease); }
+
+.header-nav {
+  display: none;
+  align-items: center;
+  gap: 40px;
+}
+.header-nav a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bone-2);
+  transition: color 0.15s var(--ease);
+}
+.header-nav a:hover,
+.header-nav a[aria-current] { color: var(--bone); } /* 'page' on section roots, 'true' on product pages */
+
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  z-index: 210;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--bone);
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.nav-toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--ink);
+  transform: translateY(-100%);
+  /* visibility:hidden while closed takes the three links out of the tab order and the
+     accessibility tree — a translate alone leaves them focusable but off-screen. The visibility
+     flip is delayed until the slide-up finishes so the close animation still plays. */
+  visibility: hidden;
+  transition: transform 0.28s var(--ease), visibility 0s linear 0.28s;
+}
+.nav-overlay.is-open {
+  transform: translateY(0);
+  visibility: visible;
+  transition: transform 0.28s var(--ease), visibility 0s;
+}
+.nav-overlay a {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(48px, 14vw, 72px);
+  line-height: 1;
+  text-decoration: none;
+  color: var(--bone);
+}
+
+@media (min-width: 640px) {
+  .header-nav { display: flex; }
+  .nav-toggle,
+  .nav-overlay { display: none; } /* overlay must go too, or a resize while open strands it with no close button */
+}
+@media (min-width: 900px) {
+  .header-inner { height: 88px; }
+}
+
+/* [data-hero='plain'] — the home hero already shows the full DEADWORK wordmark large in the hero
+   itself, so the small header logo is redundant (and doubles up visually) until the header goes
+   solid on scroll. Hidden here, restored on focus so keyboard users can still reach/see it. */
+[data-hero='plain'] .site-header:not(.is-scrolled) .header-logo img { opacity: 0; }
+[data-hero='plain'] .site-header:not(.is-scrolled) .header-logo:focus-visible img { opacity: 1; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 160px 0 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(230, 224, 211, 0.035), transparent 70%), var(--ink);
+}
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  background-size: 180px 180px;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+}
+.hero-content { position: relative; padding-bottom: 56px; }
+.hero-wordmark { width: clamp(280px, min(62vw, 90vh), 960px); margin-bottom: clamp(40px, 5vw, 64px); }
+.hero-headline {
+  font-size: clamp(48px, 7.6vw, 120px);
+  max-width: none;
+  margin-bottom: clamp(24px, 2.5vw, 36px);
+}
+.hero-lede { max-width: 40ch; margin-bottom: 40px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 32px; margin-bottom: clamp(64px, 8vw, 112px); }
+.hero-strip {
+  border-top: 1px solid var(--line);
+  padding: 20px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+
+/* Hero with a background video/image instead of the plain gradient + wordmark treatment above —
+   not used on any page yet, but the rules live here so a future hero can opt in via data-hero. */
+.hero-media { position: absolute; inset: 0; }
+.hero-media video,
+.hero-media img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
+[data-hero='media'] .hero-bg {
+  background: linear-gradient(180deg, rgba(10, 10, 9, 0.55) 0%, rgba(10, 10, 9, 0) 28%, rgba(10, 10, 9, 0) 45%, rgba(10, 10, 9, 0.92) 100%);
+}
+[data-hero='media'] .hero-wordmark { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-media video { display: none; }
+}
+
+/* ---------- Origin / pull-quote reading column ---------- */
+.origin { padding-block: var(--space-section); /* block only: about page puts this on a .wrap-narrow */ background: var(--ink); }
+.origin blockquote {
+  font-size: clamp(26px, 3.6vw, 44px);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+}
+.origin cite {
+  display: block;
+  margin-top: 24px;
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-2);
+}
+
+/* ---------- Product grid ---------- */
+.phase-band {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: clamp(96px, 10vw, 144px) 0 24px;
+  border-top: 1px solid var(--line);
+}
+.phase-band:first-of-type { border-top: 0; }
+.phase-label {
+  font-family: var(--font-mono);
+  font-weight: 400; /* it's an <h2> for outline purposes; don't let the UA bold it */
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bone);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 clamp(32px, 5vw, 64px);
+  background: none;
+  margin-bottom: 0;
+}
+@media (min-width: 640px) {
+  .product-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px 0 clamp(56px, 6vw, 80px);
+  background: none;
+  border-top: 2px solid var(--acc);
+  text-decoration: none;
+  color: var(--bone);
+  transition: background 0.18s var(--ease);
+  container-type: inline-size;
+}
+.product-card:hover { background: var(--ink-raised); }
+.product-card:hover .product-oneliner { color: var(--bone); }
+.product-card .arrow { display: inline-block; transition: transform 0.18s var(--ease); }
+.product-card:hover .arrow { transform: translateX(4px); }
+.product-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+.product-name {
+  font-size: 32px;
+  font-size: clamp(32px, 14cqi, 72px);
+  margin-top: 8px;
+}
+.product-oneliner {
+  color: var(--bone-2);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 40ch;
+  transition: color 0.18s var(--ease);
+}
+.product-card-foot {
+  margin-top: auto;
+  padding-top: 24px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bone-2);
+}
+
+/* ---------- Mission / ethics teaser ---------- */
+.mission {
+  background: var(--ink);
+  padding-block: var(--space-section);
+}
+.mission h2 { font-size: clamp(48px, 9vw, 136px); margin-bottom: clamp(48px, 5vw, 72px); }
+.mission-list { display: flex; flex-direction: column; gap: 12px; max-width: none; margin-bottom: 56px; }
+.mission-list li { white-space: nowrap; }
+@media (max-width: 640px) { .mission-list li { white-space: normal; } }
+.mission-list li {
+  padding: 0;
+  border: 0;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.3;
+  color: var(--bone);
+}
+
+/* ---------- Closing band ---------- */
+.closing {
+  padding-block: clamp(160px, 18vw, 256px);
+  text-align: center;
+  background: var(--ink);
+}
+.closing h2 { font-size: clamp(44px, 8vw, 120px); margin-bottom: clamp(40px, 4vw, 56px); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--ink);
+  border-top: 1px solid var(--line);
+  padding: clamp(80px, 10vw, 128px) 0 32px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: clamp(64px, 8vw, 112px);
+}
+/* Three children: Tools nav, Company nav, location meta line. */
+@media (min-width: 760px) {
+  .footer-top { grid-template-columns: 2fr 1fr 1fr; }
+}
+.footer-links--tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+  row-gap: 10px;
+}
+.footer-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+.footer-wordmark {
+  width: 100%;
+  height: auto;
+  opacity: 0.08;
+  margin-bottom: 32px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--bone-2);
+}
+.footer-links a:hover { color: var(--bone); }
+.footer-bottom {
+  padding-top: 0;
+  border-top: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--bone-3);
+}
+
+/* ---------- Notify form (inline email capture — in-development product pages + their home-page
+   panel equivalents). Shared in base.css since it's used on both product.css pages and home.css
+   pages. ---------- */
+.notify-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 12px;
+}
+.notify-input {
+  flex: 1 1 240px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 16px;
+  background: var(--ink-raised);
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  color: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.notify-input::placeholder { color: var(--bone-3); }
+.notify-input:hover { border-color: var(--bone-2); }
+.notify-input:disabled { opacity: 0.6; }
+.notify-submit { flex: 0 0 auto; }
+.notify-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.notify-status {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--bone-2);
+}
+.notify-status-bad { color: var(--signal); }
+.notify-status-good { color: var(--acc-text); }
+.notify-follow {
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+}
+.notify-follow a { color: var(--bone-2); text-decoration: none; }
+.notify-follow a:hover { color: var(--bone); }
+
+/* ---------- Mobile rules (under 640px handled by default mobile-first CSS above);
+   these tighten things further per the spec's explicit mobile checklist. ---------- */
+@media (max-width: 639px) {
+  body { font-size: 16px; }
+  .btn-primary { width: 100%; }
+  .hero-actions { flex-direction: column; align-items: stretch; gap: 16px; }
+  .hero-actions .btn-tertiary { align-self: flex-start; }
+
+  /* flex-basis is a main-axis size — .notify-form/.notify-input's desktop flex-basis values
+     (420px / 240px, meant as WIDTHS in row layout) would otherwise become HEIGHTS the moment
+     flex-direction flips to column here, inflating the input to a 240px-tall box. Reset flex to
+     0 0 auto (grow/shrink 0, size from content) so every dimension here comes from width:100% and
+     min-height alone. */
+  .notify-form { flex-direction: column; align-items: stretch; flex: 0 1 auto; }
+  .notify-input, .notify-submit { width: 100%; flex: 0 0 auto; }
+
+  /* Phase label becomes a sticky band while its two cards scroll past, standing in for the
+     side-rail layout a wider viewport has room for. */
+  .phase-band {
+    position: sticky;
+    top: 76px; /* sits just below the sticky header */
+    z-index: 5;
+    background: var(--ink);
+    /* The desktop 48px top padding would make the stuck band ~84px tall — with the 76px header
+       that's a quarter of a phone screen. Move the spacing outside (margin) and keep the band slim. */
+    padding: 14px 0;
+    margin-top: 72px;
+  }
+
+  .footer-links--tools { row-gap: 0; }
+
+  /* Body copy must never read smaller than 16px on mobile — these are a touch tighter on
+     desktop for density, but not below the floor once the viewport gets small. */
+  .product-oneliner,
+  .footer-links a {
+    font-size: 16px;
+  }
+
+  /* Footer links are stacked text links: give each a full 44px tap row on touch screens. */
+  .footer-links { gap: 0; }
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}

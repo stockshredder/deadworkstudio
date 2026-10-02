@@ -1,0 +1,73 @@
+/* DEADWORK — design tokens.
+   Warm black, bone type, one blood-red signal, hairlines, tracked technical lettering.
+   Shared across every page in this site — see base.css for the reset/layout that consumes these. */
+
+@font-face {
+  font-family: 'Anton';
+  src: url('../fonts/anton.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* layout rhythm — editorial-scale wrap width, gutters, and section/block spacing */
+  --wrap-max: 1320px;
+  --gutter: clamp(24px, 4vw, 56px);
+  --space-section: clamp(120px, 14vw, 208px);
+  --space-block: clamp(80px, 9vw, 128px);
+
+  /* surfaces */
+  --ink: #0a0a09;
+  --ink-deep: #060605;
+  --ink-raised: #11110f;
+
+  /* type */
+  --bone: #e6e0d3;
+  --bone-2: #94918a;
+  /* bone-3 is the quietest TEXT tone and is used for 10–13px mono labels all over the site, so it
+     must clear WCAG AA 4.5:1 on every surface (ink 4.83, ink-raised 4.61). Was #65625c (3.26:1). */
+  --bone-3: #807d77;
+
+  /* lines */
+  --line: rgba(230, 224, 211, 0.13);
+  --line-strong: rgba(230, 224, 211, 0.3);
+
+  /* signal */
+  --blood: #c8201a;
+  --signal: #e5463d;
+
+  /* per-product accent — overridden by [data-product="slug"] below; defaults to bone
+     so any page without a product context (home, about) still renders sane rules/CTAs. */
+  --acc: var(--bone);
+  /* --acc is for fills, rules and borders. --acc-text is the version safe to use as TEXT colour:
+     identical to --acc except where the accent fails AA contrast at small sizes (blood red). */
+  --acc-text: var(--acc);
+
+  --font-display: 'Anton', 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
+
+  --ease: cubic-bezier(0.22, 0.8, 0.2, 1);
+
+  /* film-stock grain — same SVG-noise technique as the Footage Curator app's tokens.css,
+     applied at low opacity so it reads as texture, not noise. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* Per-product accents, set on <html data-product="slug"> or a wrapping element. */
+[data-product='scene-lock']   { --acc: #8b9eb6; }
+[data-product='set-control']  { --acc: #bb9b5f; }
+[data-product='loadout']      { --acc: #b6714e; }
+[data-product='offload']      { --acc: #9cc697; }
+[data-product='sound-driver'] { --acc: #70a29a; }
+[data-product='stock-shredder'] { --acc: #c8201a; }
+
+/* --acc-text must be re-declared wherever --acc is re-set: a custom property that references
+   another is resolved on the element that declares it (:root), then inherited as a fixed value.
+   Stock Shredder's blood red measures 3.47:1 on ink — fills/rules only, never small text — so its
+   text accent swaps to signal red (4.98:1). Must stay AFTER the generic [data-product] rule. */
+[data-product] { --acc-text: var(--acc); }
+[data-product='stock-shredder'] { --acc-text: var(--signal); }

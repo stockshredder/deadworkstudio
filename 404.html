@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Page not found — DEADWORK</title>
+<meta name="description" content="This page doesn't exist." />
+<meta name="robots" content="noindex" />
+<script>
+  // GitHub Pages serves this file at WHATEVER URL was requested (e.g. /products/typo/), so the
+  // relative asset paths below would resolve against that folder and 404 — an unstyled page with
+  // broken logos and links. Pin a <base> to the site root before any asset is requested.
+  // Root is "/" on a custom domain or user site; on a *.github.io project site it's "/<repo>/".
+  (function () {
+    var segs = location.pathname.split('/').filter(Boolean);
+    var siteDirs = ['products', 'about', 'assets'];
+    var root = '/';
+    if (/\.github\.io$/.test(location.hostname) && segs.length > 1 && siteDirs.indexOf(segs[0]) < 0) {
+      root = '/' + segs[0] + '/';
+    }
+    var base = document.createElement('base');
+    base.href = root;
+    document.head.appendChild(base);
+  })();
+</script>
+<link rel="icon" href="assets/img/brand/favicon.png" type="image/png" />
+<link rel="apple-touch-icon" href="assets/img/brand/apple-touch-icon.png" />
+<link rel="stylesheet" href="assets/css/tokens.css" />
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/product.css" />
+</head>
+<body>
+<header class="site-header" data-header>
+  <div class="wrap header-inner">
+    <a href="index.html" class="header-logo" aria-label="DEADWORK home"><img src="assets/img/brand/deadwork-wordmark-bone.png" alt="DEADWORK" width="1120" height="226" /></a>
+    <nav class="header-nav" aria-label="Primary">
+      <a href="index.html">Products</a>
+      <a href="about/index.html">Mission</a>
+      <a href="mailto:deadwork@deadworkstudio.com">Contact</a>
+    </nav>
+    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-overlay" id="mobile-nav" aria-label="Menu" data-nav-overlay>
+    <a href="index.html">Products</a>
+    <a href="about/index.html">Mission</a>
+    <a href="mailto:deadwork@deadworkstudio.com">Contact</a>
+  </nav>
+</header>
+
+<section class="not-found">
+  <p class="display">404</p>
+  <h1 class="display" style="font-size: clamp(24px, 4vw, 34px);">This page doesn't exist.</h1>
+  <p class="lede">It may have moved, or the link was mistyped.</p>
+  <a href="index.html" class="btn btn-primary">Back to DEADWORK</a>
+</section>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <nav aria-label="Tools">
+        <div class="footer-links footer-links--tools">
+          <a href="products/scene-lock/index.html">Scene Lock</a>
+          <a href="products/set-control/index.html">Set Control</a>
+          <a href="products/loadout/index.html">Loadout</a>
+          <a href="products/offload/index.html">Offload</a>
+          <a href="products/sound-driver/index.html">Sound Driver</a>
+          <a href="products/stock-shredder/index.html">Stock Shredder</a>
+        </div>
+      </nav>
+      <nav aria-label="Company">
+        <div class="footer-links">
+          <a href="about/index.html">Mission</a>
+          <a href="mailto:deadwork@deadworkstudio.com">Contact</a>
+          <a href="https://www.instagram.com/deadworkstudio/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.youtube.com/@deadworkstudio" target="_blank" rel="noopener">YouTube<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href="https://www.tiktok.com/@deadworkstudio" target="_blank" rel="noopener">TikTok<span class="sr-only"> (opens in a new tab)</span></a>
+        </div>
+      </nav>
+      <p class="footer-meta">Los Angeles, CA</p>
+    </div>
+    <img class="footer-wordmark" src="assets/img/brand/deadwork-wordmark-bone.png" alt="" aria-hidden="true" width="1120" height="226" />
+    <div class="footer-bottom">&copy; 2026 DEADWORK&reg; &middot; Made by filmmakers for filmmakers.</div>
+  </div>
+</footer>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

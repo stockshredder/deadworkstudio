@@ -1,0 +1,80 @@
+/* DEADWORK — Mission (about) page only. Loaded after home.css, on about/index.html alone.
+   Adds two compact content types — a numbered values list and a plain commitments list — that
+   fit inside the shared .panel sizing rules from home.css instead of the old page's spacious
+   .value-row / .ethics-item treatment. See assets/css/home.css for the poster/panel shell. */
+
+/* Origin panel: two full paragraphs plus the big display headline are the tallest content on
+   this page (taller than the compact Values/Commitments lists below) — tighten the rhythm
+   between them so the panel fits the fixed viewport at 720x640 without the .poster-panel
+   falling back to internal scroll. */
+.panel-origin .panel-headline { margin-bottom: clamp(8px, 1.4svh, 14px); }
+.panel-origin .panel-oneliner {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+.panel-origin .panel-oneliner + .panel-oneliner { margin-top: clamp(6px, 1svh, 10px); }
+
+.panel-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--bone-3);
+  margin-bottom: clamp(10px, 1.8svh, 16px);
+}
+
+.compact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+/* Rhythm lives on each item's own padding-top (not the list's gap) so the border-top rule sits
+   with even space above and below it instead of double-spacing from gap + padding stacking. */
+.compact-item {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 12px;
+  align-items: baseline;
+  padding-top: clamp(8px, 1.6svh, 14px);
+  border-top: 1px solid var(--line);
+  min-width: 0;
+}
+.compact-item:first-child { padding-top: 0; border-top: 0; }
+
+.compact-item--plain {
+  display: block;
+  padding-top: clamp(8px, 1.6svh, 14px);
+}
+.compact-item--plain:first-child { padding-top: 0; }
+
+.compact-index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .06em;
+  color: var(--bone-3);
+}
+
+.compact-body { min-width: 0; }
+
+.compact-title {
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.25;
+  color: var(--bone);
+  margin-bottom: 4px;
+}
+
+.compact-text {
+  font-size: clamp(14px, 1vw, 15.5px);
+  line-height: 1.45;
+  color: rgba(230, 224, 211, .8);
+  max-width: 60ch;
+}
+.compact-text strong { color: var(--bone); }
+
+@media (max-width: 639px) {
+  .compact-title,
+  .compact-text { font-size: 16px; }
+}
