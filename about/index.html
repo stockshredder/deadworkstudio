@@ -26,9 +26,9 @@
     <div class="index-group">
       <h2 class="sr-only">Mission</h2>
       <ul>
-        <li><a class="index-word" href="#origin" data-panel-target="default">Origin</a></li>
-        <li><a class="index-word" href="#values" data-panel-target="values">Values</a></li>
-        <li><a class="index-word" href="#commitments" data-panel-target="commitments">Commitments</a></li>
+        <li><a class="index-word" href="#origin" data-panel-target="default" data-scroll-to="origin">Origin</a></li>
+        <li><a class="index-word" href="#values" data-panel-target="default" data-scroll-to="values">Values</a></li>
+        <li><a class="index-word" href="#commitments" data-panel-target="default" data-scroll-to="commitments">Commitments</a></li>
       </ul>
     </div>
     <div class="index-group index-group--studio">
@@ -43,59 +43,61 @@
   <main class="poster-panel" data-panels>
     <p class="sr-only" aria-live="polite" data-panel-status></p>
     <div class="panel-stack">
-      <article class="panel is-active panel-origin" data-panel="default">
-        <h2 class="panel-headline display" data-owner-review="about headline">WE MAKE THE PART NOBODY SEES, EASIER.</h2>
-        <p class="panel-oneliner">Before DEADWORK, there were twenty years of productions — as director, producer, editor, and the person quietly holding the whole thing together. The idea for these tools started the day we tried to run an actual 20-person short-film crew, and felt exactly how much of that job has nothing to do with making anything.</p>
-        <p class="panel-oneliner">We build tools for filmmakers, creators, and small companies who want to make ambitious work without building a massive organization around themselves — technology for people doing the work of an entire crew.</p>
-      </article>
+      <article class="panel is-active panel-origin" data-panel="default" data-title="Mission">
+        <section id="origin">
+          <h2 class="panel-headline display" data-owner-review="about headline">WE MAKE THE PART NOBODY SEES, EASIER.</h2>
+          <p class="panel-oneliner">Before DEADWORK, there were twenty years of productions — as director, producer, editor, and the person quietly holding the whole thing together. The idea for these tools started the day we tried to run an actual 20-person short-film crew, and felt exactly how much of that job has nothing to do with making anything.</p>
+          <p class="panel-oneliner">We build tools for filmmakers, creators, and small companies who want to make ambitious work without building a massive organization around themselves — technology for people doing the work of an entire crew.</p>
+        </section>
 
-      <article class="panel" data-panel="values" data-title="Values">
-        <h2 class="panel-kicker">Values</h2>
-        <ol class="compact-list">
-          <li class="compact-item">
-            <span class="compact-index">01</span>
-            <div class="compact-body">
-              <h3 class="compact-title">Kill the tedious work, not the people doing it.</h3>
-              <p class="compact-text">Software removes the repetitive production work so creatives can spend their time creating.</p>
-            </div>
-          </li>
-          <li class="compact-item">
-            <span class="compact-index">02</span>
-            <div class="compact-body">
-              <h3 class="compact-title">Idea. Execution. Completion.</h3>
-              <p class="compact-text">The human owns all three. DEADWORK removes the friction between them.</p>
-            </div>
-          </li>
-          <li class="compact-item">
-            <span class="compact-index">03</span>
-            <div class="compact-body">
-              <h3 class="compact-title">We don't want AI making the art for us.</h3>
-              <p class="compact-text">We want it doing the tasks that waste time.</p>
-            </div>
-          </li>
-          <li class="compact-item">
-            <span class="compact-index">04</span>
-            <div class="compact-body">
-              <h3 class="compact-title">Honest about what's ready.</h3>
-              <p class="compact-text">We label what's shipping and what's still in progress — no polish over a product that isn't there yet.</p>
-            </div>
-          </li>
-        </ol>
-      </article>
+        <section id="values" class="mission-section">
+          <h2 class="panel-kicker">Values</h2>
+          <ol class="compact-list">
+            <li class="compact-item">
+              <span class="compact-index">01</span>
+              <div class="compact-body">
+                <h3 class="compact-title">Kill the tedious work, not the people doing it.</h3>
+                <p class="compact-text">Software removes the repetitive production work so creatives can spend their time creating.</p>
+              </div>
+            </li>
+            <li class="compact-item">
+              <span class="compact-index">02</span>
+              <div class="compact-body">
+                <h3 class="compact-title">Idea. Execution. Completion.</h3>
+                <p class="compact-text">The human owns all three. DEADWORK removes the friction between them.</p>
+              </div>
+            </li>
+            <li class="compact-item">
+              <span class="compact-index">03</span>
+              <div class="compact-body">
+                <h3 class="compact-title">We don't want AI making the art for us.</h3>
+                <p class="compact-text">We want it doing the tasks that waste time.</p>
+              </div>
+            </li>
+            <li class="compact-item">
+              <span class="compact-index">04</span>
+              <div class="compact-body">
+                <h3 class="compact-title">Honest about what's ready.</h3>
+                <p class="compact-text">We label what's shipping and what's still in progress — no polish over a product that isn't there yet.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
 
-      <article class="panel" data-panel="commitments" data-title="Commitments">
-        <h2 class="panel-kicker">Commitments</h2>
-        <ul class="compact-list">
-          <li class="compact-item compact-item--plain">
-            <p class="compact-text"><strong>We pay artists for every sound.</strong> Sound Driver sources real sound design from real artists, and every artist gets paid for the sounds we use — not a flat licensing buyout that cuts them out later.</p>
-          </li>
-          <li class="compact-item compact-item--plain" data-owner-review="footage privacy commitment">
-            <p class="compact-text"><strong>Your footage stays yours.</strong> Footage and production data you run through our tools is yours. We don't sell it, train on it without asking, or hold it hostage behind a subscription.</p>
-          </li>
-          <li class="compact-item compact-item--plain" data-owner-review="no fake numbers commitment">
-            <p class="compact-text"><strong>No fake numbers.</strong> We don't publish invented customer counts, made-up reviews, or screenshots of products that don't exist yet.</p>
-          </li>
-        </ul>
+        <section id="commitments" class="mission-section">
+          <h2 class="panel-kicker">Commitments</h2>
+          <ul class="compact-list">
+            <li class="compact-item compact-item--plain">
+              <p class="compact-text"><strong>We pay artists for every sound.</strong> Sound Driver sources real sound design from real artists, and every artist gets paid for the sounds we use — not a flat licensing buyout that cuts them out later.</p>
+            </li>
+            <li class="compact-item compact-item--plain" data-owner-review="footage privacy commitment">
+              <p class="compact-text"><strong>Your footage stays yours.</strong> Footage and production data you run through our tools is yours. We don't sell it, train on it without asking, or hold it hostage behind a subscription.</p>
+            </li>
+            <li class="compact-item compact-item--plain" data-owner-review="no fake numbers commitment">
+              <p class="compact-text"><strong>No fake numbers.</strong> We don't publish invented customer counts, made-up reviews, or screenshots of products that don't exist yet.</p>
+            </li>
+          </ul>
+        </section>
       </article>
 
       <article class="panel" data-panel="contact" data-title="Contact">
@@ -120,5 +122,19 @@
 </div>
 <script src="../assets/js/main.js"></script>
 <script src="../assets/js/home.js" defer></script>
+<script defer>
+(function () {
+  document.querySelectorAll('[data-scroll-to]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var target = document.getElementById(link.dataset.scrollTo);
+      if (!target) return;
+      // Wait a tick for home.js to switch the panel to "default" first (if coming from Contact).
+      setTimeout(function () {
+        target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      }, 20);
+    });
+  });
+})();
+</script>
 </body>
 </html>

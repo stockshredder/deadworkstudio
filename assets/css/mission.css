@@ -15,6 +15,12 @@
 }
 .panel-origin .panel-oneliner + .panel-oneliner { margin-top: clamp(6px, 1svh, 10px); }
 
+.mission-section {
+  margin-top: clamp(24px, 4svh, 40px);
+  padding-top: clamp(20px, 3svh, 32px);
+  border-top: 1px solid var(--line);
+}
+
 .panel-kicker {
   font-family: var(--font-mono);
   font-size: 11px;
