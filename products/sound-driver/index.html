@@ -9,31 +9,50 @@
 <link rel="apple-touch-icon" href="../../assets/img/brand/apple-touch-icon.png" />
 <link rel="stylesheet" href="../../assets/css/tokens.css" />
 <link rel="stylesheet" href="../../assets/css/base.css" />
+<link rel="stylesheet" href="../../assets/css/home.css" />
 <link rel="stylesheet" href="../../assets/css/product.css" />
 </head>
 <body>
-<header class="site-header" data-header>
-  <div class="wrap header-inner">
-    <a href="../../index.html" class="header-logo" aria-label="DEADWORK home"><img src="../../assets/img/brand/deadwork-wordmark-bone.png" alt="DEADWORK" width="1120" height="226" /></a>
-    <nav class="header-nav" aria-label="Primary">
-      <a href="../../index.html" aria-current="true">Products</a>
-      <a href="../../about/index.html">Mission</a>
-      <a href="mailto:deadworkstudio@gmail.com">Contact</a>
-    </nav>
-    <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <nav class="nav-overlay" id="mobile-nav" aria-label="Menu" data-nav-overlay>
-    <a href="../../index.html" aria-current="true">Products</a>
-    <a href="../../about/index.html">Mission</a>
-    <a href="mailto:deadworkstudio@gmail.com">Contact</a>
-  </nav>
-</header>
+<div class="poster">
+  <header class="poster-head">
+    <h1 class="poster-brand"><a href="../../index.html"><img src="../../assets/img/brand/deadwork-wordmark-bone.png" alt="DEADWORK" width="1120" height="226"></a></h1>
+    <p class="poster-strip">Est. Los Angeles<br>Post</p>
+  </header>
 
-<div class="wrap">
-  <p class="breadcrumb"><a href="../../index.html">Tools</a><span class="sep">/</span><span>POST / REVENUE</span><span class="sep">/</span><span class="current">SOUND DRIVER</span></p>
-</div>
+  <nav class="poster-index" aria-label="Tools and studio" data-index>
+    <div class="index-group">
+      <h2 class="index-label">I — Pre-Production</h2>
+      <ul>
+        <li><a class="index-word" href="../../products/scene-lock/index.html" data-product="scene-lock">Scene Lock</a></li>
+        <li><a class="index-word" href="../../products/set-control/index.html" data-product="set-control">Set Control</a></li>
+      </ul>
+    </div>
+    <div class="index-group">
+      <h2 class="index-label">II — Production</h2>
+      <ul>
+        <li><a class="index-word" href="../../products/loadout/index.html" data-product="loadout">Loadout</a></li>
+        <li><a class="index-word" href="../../products/offload/index.html" data-product="offload">Offload</a></li>
+      </ul>
+    </div>
+    <div class="index-group">
+      <h2 class="index-label">III — Post</h2>
+      <ul>
+        <li><a class="index-word" href="../../products/sound-driver/index.html" data-product="sound-driver" aria-current="true">Sound Driver</a></li>
+        <li><a class="index-word" href="../../products/stock-shredder/index.html" data-product="stock-shredder">Stock Shredder</a></li>
+      </ul>
+    </div>
+    <div class="index-group index-group--studio">
+      <h2 class="sr-only">Studio</h2>
+      <ul>
+        <li><a class="index-word" href="../../about/index.html">Mission</a></li>
+        <li><a class="index-word" href="mailto:deadworkstudio@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="poster-panel" data-panels>
+    <div class="panel-stack">
+      <article class="panel is-active" data-panel="default">
 
 <section class="wrap product-hero" data-product="sound-driver">
   <div class="product-hero-badge-row">
@@ -133,34 +152,17 @@
     <span class="btn-tertiary"><span class="label">View</span><span class="arrow">&rarr;</span></span>
   </a>
 </section>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <nav aria-label="Tools">
-        <div class="footer-links footer-links--tools">
-          <a href="../../products/scene-lock/index.html">Scene Lock</a>
-          <a href="../../products/set-control/index.html">Set Control</a>
-          <a href="../../products/loadout/index.html">Loadout</a>
-          <a href="../../products/offload/index.html">Offload</a>
-          <a href="../../products/sound-driver/index.html">Sound Driver</a>
-          <a href="../../products/stock-shredder/index.html">Stock Shredder</a>
-        </div>
-      </nav>
-      <nav aria-label="Company">
-        <div class="footer-links">
-          <a href="../../about/index.html">Mission</a>
-          <a href="mailto:deadworkstudio@gmail.com">Contact</a>
-          <a href="https://www.instagram.com/deadworkstudio/" target="_blank" rel="noopener">Instagram<span class="sr-only"> (opens in a new tab)</span></a>
-          <a href="https://www.youtube.com/@deadworkstudio" target="_blank" rel="noopener">YouTube<span class="sr-only"> (opens in a new tab)</span></a>
-          <a href="https://www.tiktok.com/@deadworkstudio" target="_blank" rel="noopener">TikTok<span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-      </nav>
-      <p class="footer-meta">Los Angeles, CA</p>
+
+      </article>
     </div>
-    <img class="footer-wordmark" src="../../assets/img/brand/deadwork-wordmark-bone.png" alt="" aria-hidden="true" width="1120" height="226" />
-    <div class="footer-bottom">&copy; 2026 DEADWORK&reg; &middot; Made by filmmakers for filmmakers.</div>
-  </div>
-</footer>
+  </main>
+
+  <footer class="poster-foot">
+    <a class="foot-email" href="mailto:deadworkstudio@gmail.com">deadworkstudio@gmail.com</a>
+    <p class="foot-note">By filmmakers. For filmmakers. Thank you.</p>
+    <p class="foot-copy">&copy; 2026 DEADWORK&reg;</p>
+  </footer>
+</div>
 <script src="../../assets/js/main.js"></script>
 <script src="../../assets/js/notify.js" defer></script>
 </body>
