@@ -81,6 +81,7 @@
 
 .poster-foot { margin-top: 64px; padding: 24px 0 32px; border-top: 1px solid var(--line); display: grid; gap: 4px; font: 12px/1.5 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--bone-3); }
 .foot-email { text-transform: none; letter-spacing: .06em; color: var(--bone-2); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.foot-note { text-transform: none; letter-spacing: .02em; color: var(--bone-2); text-align: center; }
 
 @media (min-width: 720px) { .poster-index { grid-template-columns: repeat(4, 1fr); } }
 
@@ -98,7 +99,7 @@
   .poster-panel { grid-column: 5 / 13; grid-row: 2; margin: 0; border: 0; padding-block: clamp(24px, 5svh, 64px) clamp(24px, 4svh, 40px); min-height: 0; overflow-y: auto; scrollbar-width: thin; }
   .poster-foot { grid-row: 3; margin: 0; padding: 20px 0 24px; }
   .foot-email { grid-column: 1 / 5; min-height: 0; }
-  .foot-loc   { grid-column: 5 / 9; }
+  .foot-note  { grid-column: 5 / 9; }
   .foot-copy  { grid-column: 9 / 13; text-align: right; }
 }
 @media (min-width: 720px) and (max-width: 1023px) and (min-height: 640px) {
